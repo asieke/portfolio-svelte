@@ -11,60 +11,64 @@
 
 	function toggleSidebar() {
 		sidebar = !sidebar;
+		console.log(sidebar);
 	}
 </script>
 
-<div
-	class="h-screen w-full overflow-hidden bg-slate-300 py-20 px-4 sm:pl-72 transition-all duration-500 ease-in-out"
->
-	<button
-		class="fixed bg-slate-900 z-50 opacity-100 top-0 left-0 sm:-left-32 h-12 w-12 p-2 m-2 rounded transition-all duration-500 ease-in-out text-white"
-		on:click={() => toggleSidebar()}><Hamburger /></button
-	>
-	<div
-		class="fixed flex flex-row z-50 top-0 -left-64 sm:left-0 h-16 w-64 py-2 px-5 transition-all duration-500 ease-in-out"
-	>
-		<img src="logo.png" alt="logo" />
-		<div class="text-lg font-bold text-white items-center flex ml-1">Portfolio Lab</div>
-	</div>
-	<Navbar />
-	<div
-		class="fixed top-0 z-20 h-screen w-64 {sidebar
-			? '-left-64'
-			: 'left-0 shadow-right'} sm:left-0 bg-slate-800 transition-all duration-500 ease-in-out"
-	>
-		<div class="relative h-screen">
-			<ul class="absolute top-20">
-				<li>Link 1</li>
-				<li>Link 1</li>
-				<li>Link 1</li>
-				<li>Link 1</li>
-			</ul>
-
-			<ul class="absolute bottom-4">
-				<li>Link A</li>
-				<li>Link 2</li>
-				<li>Link 3</li>
-				<li>Link 4</li>
-			</ul>
+<div class="main">
+	<div class="nav">
+		<div class="transition-all duration-500 ease-in-out sm:-mr-24 m-0">
+			<button on:click={() => toggleSidebar()}><Hamburger /></button>
 		</div>
 	</div>
-
-	<slot />
+	<div class="w-full flex flex-row">
+		<div
+			class="sidebar {sidebar
+				? '-left-64'
+				: 'left-0'} sm:left-0 bg-slate-800 transition-all duration-500 ease-in-out"
+		>
+			Sidebar
+			<div class="profile" />
+		</div>
+		<div class="content {sidebar ? '' : 'pl-0'} sm:pl-64 transition-all duration-500 ease-in-out">
+			<slot />
+		</div>
+	</div>
 </div>
 
-<style lang="postcss">
-	.shadow-right {
-		box-shadow: 10px 0 10px -10px rgba(0, 0, 0, 0.5);
+<style>
+	.main {
+		@apply h-screen w-full overflow-hidden bg-red-700;
 	}
 
-	ul {
-		@apply flex flex-col justify-center items-center w-full;
+	.nav {
+		@apply h-16 w-full bg-blue-500 flex flex-row-reverse;
+		height: 48px;
 	}
 
-	li {
-		@apply w-5/6 bg-slate-600 rounded-md p-2 mb-2 cursor-pointer hover:bg-slate-700 drop-shadow-sm text-slate-200 text-sm;
+	.nav button {
+		@apply p-3 bg-green-700 text-white w-12;
 	}
 
-	/* create a ul/li class that is centered in the parent div, has rounded edges and looks like a sweet sidebar, has hover */
+	.nav button:hover {
+		@apply bg-green-800;
+	}
+
+	.main {
+		@apply h-screen w-full overflow-hidden bg-red-700;
+	}
+
+	.sidebar {
+		@apply w-64 bg-green-500 fixed;
+		height: calc(100vh - 48px);
+	}
+
+	.content {
+		@apply bg-yellow-500 w-full;
+		height: calc(100vh - 48px);
+	}
+
+	.profile {
+		@apply bottom-0 w-full h-32 absolute bg-black;
+	}
 </style>
