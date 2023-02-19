@@ -38,7 +38,7 @@
 
 <style>
 	.main {
-		@apply h-screen w-full overflow-hidden bg-red-700;
+		@apply h-screen w-full overflow-hidden bg-red-700 overscroll-none;
 	}
 
 	.nav {
