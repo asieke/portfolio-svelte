@@ -1,9 +1,11 @@
+<script lang="ts">
+	import Content from '$components/Content.svelte';
+</script>
+
 <h1>Welcome to SvelteKit</h1>
-<p>
-	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation there is a lot
-	fo documentation and it spans the whole page so its long and on the page
-</p>
+<h2>Heading #2</h2>
 
-<div>Hello</div>
+<p>How are you doing</p>
 
-<h1 class="text-3xl font-bold underline">Hello world!</h1>
+<div>This is a div</div>
+<Content />
