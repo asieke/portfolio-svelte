@@ -1,4 +1,4 @@
 import Hamburger from './Hamburger.svelte';
-import Logo from './Logo.svelte';
+import NightMode from './NightMode.svelte';
 
-export { Hamburger, Logo };
+export { Hamburger, NightMode };

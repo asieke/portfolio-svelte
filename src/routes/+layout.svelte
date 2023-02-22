@@ -1,13 +1,8 @@
 <script lang="ts">
 	import '../app.css';
-	import { Hamburger, Logo } from '$components/svg/';
 	import Sidebar from '$components/Sidebar.svelte';
 	import Navbar from '$components/Navbar.svelte';
 	import { sidebar } from '$lib/stores';
-
-	function toggleSidebar() {
-		sidebar.set(!$sidebar);
-	}
 
 	//write a function that takes the current theme and sets the css variables to the values in themeColors
 </script>
