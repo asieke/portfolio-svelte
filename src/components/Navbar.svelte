@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { sidebar } from '$lib/stores';
 	import theme from '$lib/stores/themeStore';
+	import UserDropdown from '$components/UserDropdown.svelte';
 
 	import { Hamburger, NightMode } from '$components/svg/';
 
@@ -23,19 +24,32 @@
 </script>
 
 <div class="nav">
-	<div class="flex align-middle p-2">
+	<div class="hidden sm:block transition-all duration-500 ease-in-out">
+		<div class="flex align-middle p-2">
+			<img src="/logo.png" alt={'logo'} height={32} width={32} />
+			<span class="m-1 font-bold">Portfolio Labs</span>
+		</div>
+	</div>
+	<div class="block sm:hidden transition-all duration-500 ease-in-out">
+		<button on:click={() => toggleSidebar()}><Hamburger /></button>
+	</div>
+	<div class="flex flex-row">
+		<button on:click={() => toggleTheme()}><NightMode /></button>
+		<UserDropdown />
+	</div>
+	<!-- <div class="flex align-middle p-2">
 		<img src="/logo.png" alt={'logo'} />
 		<span class="m-1 font-bold">Portfolio Labs</span>
 	</div>
 
-	<div class="flex flex-row-reverse bg-green-500 relative">
+	<div class="flex flex-row-reverse relative">
 		<div class="transition-all duration-500 ease-in-out mr-12 sm:m-0 fixed">
 			<button on:click={() => toggleTheme()}><NightMode /></button>
 		</div>
 		<div class="transition-all duration-500 ease-in-out  m-0 sm:-mr-24 fixed">
 			<button on:click={() => toggleSidebar()}><Hamburger /></button>
 		</div>
-	</div>
+	</div> -->
 </div>
 
 <style>
