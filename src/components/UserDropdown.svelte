@@ -8,10 +8,9 @@
 		<span class="font-medium truncate">name@flowbite.com</span>
 	</div>
 	<ul class="py-2">
-		<li><a href="dashboard/">Dashboard</a></li>
-		<li><a href="dashboard/">Settings</a></li>
-		<li><a href="dashboard/">Profile</a></li>
-		<li><a href="dashboard/">Logout</a></li>
+		<li><a href="settings/">Settings</a></li>
+		<li><a href="profile/">Profile</a></li>
+		<li><a href="logout/">Logout</a></li>
 	</ul>
 </div>
 

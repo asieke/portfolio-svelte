@@ -2,4 +2,4 @@
 	import Lorem from '$components/Lorem.svelte';
 </script>
 
-<h1>Dashboard</h1>
+<h1>Taxes</h1>
