@@ -1,16 +1,8 @@
 <script lang="ts">
-	let dropdown = true;
-
-	const toggleDropdown = () => {
-		dropdown = !dropdown;
-	};
+	import { menu } from '$lib/stores';
 </script>
 
-<button type="button" class="m-2 w-8 h-8 p-1 -ml-1 rounded-full" on:click={toggleDropdown}>
-	<img class="w-full h-full rounded-full" src="/profile.png" alt="user" />
-</button>
-
-<div class="container {dropdown ? 'right-0' : '-right-48'}">
+<div class="container {$menu ? 'right-0' : '-right-48'}">
 	<div class="px-4 py-3">
 		<span class="">Bonnie Green</span>
 		<span class="font-medium truncate">name@flowbite.com</span>
@@ -24,10 +16,6 @@
 </div>
 
 <style lang="postcss">
-	button {
-		@apply m-2 w-8 h-8 p-1 -ml-1 rounded-full;
-		background-color: var(--bg-main);
-	}
 	div.container {
 		@apply fixed z-40 w-48 top-12 text-base list-none divide-gray-600 divide-y transition-all duration-500 ease-in-out;
 		background-color: var(--bg-sidebar);
@@ -42,6 +30,6 @@
 	}
 
 	a:hover {
-		background-color: var(--bg-nav);
+		background-color: var(--bg-sidebar-item);
 	}
 </style>

@@ -1,25 +1,49 @@
 <script lang="ts">
 	import '../app.css';
+	import { onMount } from 'svelte';
+
 	import Sidebar from '$components/Sidebar.svelte';
 	import Navbar from '$components/Navbar.svelte';
-	import { sidebar } from '$lib/stores';
+	import Content from '$components/Content.svelte';
+	import UserDropdown from '$components/UserDropdown.svelte';
 
-	//write a function that takes the current theme and sets the css variables to the values in themeColors
+	onMount(() => {
+		window.addEventListener('resize', () => {
+			if (window.innerWidth < 640) {
+				document.documentElement.classList.add('sidebarHidden');
+				document.documentElement.classList.remove('sidebarShowing');
+			}
+			if (window.innerWidth >= 640) {
+				document.documentElement.classList.remove('sidebarHidden');
+				document.documentElement.classList.add('sidebarShowing');
+			}
+		});
+	});
 </script>
 
-<div class="main">
+<div class="w-full h-screen m-0 p-0 fixed overflow-hidden">
 	<Navbar />
-	<div class="w-full flex flex-row">
+	<UserDropdown />
+
+	<div class="main">
 		<Sidebar />
-		<div class="content {$sidebar ? '' : 'pl-0'}">
+		<Content>
 			<slot />
-		</div>
+		</Content>
 	</div>
 </div>
 
 <svelte:head>
 	<script>
-		const theme = window.localStorage.getItem('theme') || 'dark';
-		document.documentElement.classList.add(theme);
+		if (window) {
+			const localTheme = window.localStorage.getItem('theme') || 'dark';
+			document.documentElement.classList.add(localTheme);
+			//if the screen size is <640 then set the .sidebar "left" to -256px
+			if (window.innerWidth < 640) {
+				document.documentElement.classList.add('sidebarHidden');
+			} else {
+				document.documentElement.classList.add('sidebarShowing');
+			}
+		}
 	</script>
 </svelte:head>

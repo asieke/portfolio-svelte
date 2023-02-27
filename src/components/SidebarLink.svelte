@@ -1,38 +1,41 @@
 <script lang="ts">
+	import { sidebarCollapsed } from '$lib/stores';
+
 	export let href: string;
 	export let name: string;
 	export let notifications = 0;
-	export let selected = false;
-
-	$: bg = selected ? 'bg-slate-900 text-blue-600' : 'bg-transparent text-gray-500';
 </script>
 
-<li>
-	<a {href}>
-		<span class="container">
+<li class="relative flex h-12 justify-end">
+	<a {href} class={$sidebarCollapsed ? 'w-16' : 'w-full'}>
+		<div class="icon {$sidebarCollapsed ? 'left-[196px]' : 'left-2'}">
 			<slot />
-			<span>{name}</span>
-		</span>
-		{#if notifications > 0}
-			<span class="notif">{notifications}</span>
-		{/if}
+		</div>
+		<div class="name {$sidebarCollapsed ? 'opacity-0' : 'opacity-100'}">
+			{name}
+		</div>
+		<div class="notif {$sidebarCollapsed ? 'opacity-0' : 'opacity-100'}">{notifications}</div>
 	</a>
 </li>
 
 <style>
 	a {
-		@apply flex items-center justify-between py-1.5 px-4 rounded cursor-pointer font-normal;
+		@apply flex rounded cursor-pointer font-normal;
 		color: var(--text);
 	}
 	a:hover {
 		background-color: var(--bg-sidebar-item);
 	}
 
-	span.container {
-		@apply flex items-center space-x-2;
+	.name {
+		@apply absolute left-10 h-full flex items-center transition-all duration-300 ease-in-out;
 	}
 
-	span.notif {
-		@apply bg-sky-500 text-gray-100 font-bold px-2 py-0.5 text-xs rounded-lg;
+	.icon {
+		@apply absolute h-full flex items-center transition-all duration-500 ease-in-out;
+	}
+
+	.notif {
+		@apply bg-sky-500 text-gray-100 font-bold px-2 py-1 text-xs rounded-full absolute right-0 h-6 my-3 mr-3 transition-all duration-300 ease-in-out;
 	}
 </style>

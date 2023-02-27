@@ -1,62 +1,47 @@
 <script lang="ts">
-	import { sidebar } from '$lib/stores';
-	import theme from '$lib/stores/themeStore';
-	import UserDropdown from '$components/UserDropdown.svelte';
+	import { onMount } from 'svelte';
 
-	import { Hamburger, NightMode } from '$components/svg/';
+	import { menu } from '$lib/stores';
+	import theme from '$lib/stores/themeStore';
+
+	import { Hamburger, Sun } from '$components/svg/';
 
 	function toggleSidebar() {
-		sidebar.set(!$sidebar);
+		document.documentElement.classList.toggle('sidebarShowing');
+		document.documentElement.classList.toggle('sidebarHidden');
 	}
 
 	function toggleTheme() {
-		console.log('HELLO');
-		if ($theme === 'dark') {
-			document.documentElement.classList.remove('dark');
-			document.documentElement.classList.add('light');
-			theme.set('light');
-		} else {
-			document.documentElement.classList.remove('light');
-			document.documentElement.classList.add('dark');
-			theme.set('dark');
-		}
+		document.documentElement.classList.toggle('light');
+		document.documentElement.classList.toggle('dark');
 	}
 </script>
 
 <div class="nav">
 	<div class="hidden sm:block transition-all duration-500 ease-in-out">
-		<div class="flex align-middle p-2">
+		<div class="flex align-middle items-center p-2">
 			<img src="/logo.png" alt={'logo'} height={32} width={32} />
 			<span class="m-1 font-bold">Portfolio Labs</span>
 		</div>
 	</div>
-	<div class="block sm:hidden transition-all duration-500 ease-in-out">
-		<button on:click={() => toggleSidebar()}><Hamburger /></button>
+	<div class="sm:hidden flex items-center transition-all duration-500 ease-in-out">
+		<button on:click={() => toggleSidebar()}><Hamburger class="h-6 w-6 ml-3" /></button>
 	</div>
-	<div class="flex flex-row">
-		<button on:click={() => toggleTheme()}><NightMode /></button>
-		<UserDropdown />
+	<div class="flex flex-row mr-4 space-x-2">
+		<button on:click={() => toggleTheme()}><Sun /></button>
+		<button
+			type="button"
+			class="border-2 border-gray-300 h-7 w-7"
+			on:click|stopPropagation={() => menu.set(!$menu)}
+		>
+			<img class="rounded-full" height={32} width={32} src="/profile.png" alt="user" />
+		</button>
 	</div>
-	<!-- <div class="flex align-middle p-2">
-		<img src="/logo.png" alt={'logo'} />
-		<span class="m-1 font-bold">Portfolio Labs</span>
-	</div>
-
-	<div class="flex flex-row-reverse relative">
-		<div class="transition-all duration-500 ease-in-out mr-12 sm:m-0 fixed">
-			<button on:click={() => toggleTheme()}><NightMode /></button>
-		</div>
-		<div class="transition-all duration-500 ease-in-out  m-0 sm:-mr-24 fixed">
-			<button on:click={() => toggleSidebar()}><Hamburger /></button>
-		</div>
-	</div> -->
 </div>
 
-<style>
+<style lang="postcss">
 	button {
-		height: 40px;
-		width: 40px;
-		margin: 4px;
-		padding: 6px;
+		@apply outline-none p-0 rounded-full;
+		margin: 10px 0px;
 	}
 </style>

@@ -1,3 +1,9 @@
 import { writable } from 'svelte/store';
+import theme from './themeStore';
 
-export const sidebar = writable(true);
+export { theme };
+
+export const sidebarCollapsed = writable(false);
+
+export const padding = writable(true);
+export const menu = writable(false);
