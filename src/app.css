@@ -11,13 +11,14 @@ html.sidebarHidden {
 }
 
 html.dark {
-	--bg-main: #334155;
 	--bg-nav: #0f172a;
+	--bg-1: #0f172a;
+	--bg-2: #1e293b;
+	--bg-3: #334155;
+	--bg-4: #475569;
+	--bg-5: #64748b;
+
 	--text-nav: #e2e8f0;
-	--bg-content: #334155;
-	--bg-sidebar: #1e293b;
-	--bg-sidebar-item: #121924;
-	--bg-profile: #0f172a;
 	--text: #e2e8f0;
 	--text-inv: #0f172a;
 	--accent: #f56565;
@@ -27,13 +28,15 @@ html.dark {
 }
 
 html.light {
-	--bg-main: #e2e8f0;
 	--bg-nav: #0f172a;
+	--bg-1: #cbd5e1;
+	--bg-2: #e2e8f0;
+	--bg-3: #f1f5f9;
+	--bg-4: #f8fafc;
+	--bg-5: #fff;
+
 	--text-nav: #e2e8f0;
-	--bg-content: #e2e8f0;
-	--bg-sidebar: #d9e2ec;
-	--bg-sidebar-item: #bdc6cf;
-	--bg-profile: #f7fafc;
+
 	--text: #334155;
 	--text-inv: #e2e8f0;
 	--accent: #f56565;
@@ -49,37 +52,32 @@ body {
 }
 
 .nav {
-	@apply w-full h-12 flex justify-between transition-all duration-500 ease-in-out z-50;
+	@apply w-full h-12 flex justify-between z-50;
 	background-color: var(--bg-nav);
 	color: var(--text-nav);
 }
 
 .main {
-	display: grid;
-	grid-template-columns: auto 1fr;
-	grid-template-rows: 1fr;
-	background-color: var(--bg-main);
+	@apply w-full p-0 m-0 overflow-hidden;
 }
 
-/* If the HTML element has the class "collpased" then sidebar should be left: -256px*/
-
 .sidebar {
-	@apply fixed transition-all duration-500 ease-in-out w-64;
+	@apply fixed transition-all duration-150 ease-in-out w-64;
 	left: var(--sidebar-left);
-	background-color: var(--bg-sidebar);
+	background-color: var(--bg-2);
 	height: calc(100vh - 48px);
 }
 
 .content {
-	@apply overflow-scroll py-6 pr-6 transition-all duration-500 ease-in-out;
-	background-color: var(--bg-content);
+	@apply overflow-scroll py-6 pr-6 transition-all duration-150 ease-in-out;
+	background-color: var(--bg-4);
 	color: var(--text);
 	height: calc(100vh - 48px);
 }
 
 .profile {
 	@apply bottom-0 w-full h-14 absolute;
-	background-color: var(--bg-profile);
+	background-color: var(--bg-1);
 }
 
 .profile button {

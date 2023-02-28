@@ -37,6 +37,7 @@
 	<script>
 		if (window) {
 			const localTheme = window.localStorage.getItem('theme') || 'dark';
+			console.log('loading ))))', localTheme);
 			document.documentElement.classList.add(localTheme);
 			//if the screen size is <640 then set the .sidebar "left" to -256px
 			if (window.innerWidth < 640) {

@@ -36,7 +36,7 @@
 <style>
 	button {
 		@apply outline-none p-1 right-4 bottom-4 absolute;
-		background-color: var(--bg-sidebar-item);
+		background-color: var(--bg-3);
 		color: var(--text);
 	}
 </style>

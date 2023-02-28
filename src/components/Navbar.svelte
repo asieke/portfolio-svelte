@@ -14,6 +14,7 @@
 	function toggleTheme() {
 		document.documentElement.classList.toggle('light');
 		document.documentElement.classList.toggle('dark');
+		theme.set($theme === 'dark' ? 'light' : 'dark');
 	}
 </script>
 

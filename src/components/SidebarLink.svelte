@@ -24,18 +24,18 @@
 		color: var(--text);
 	}
 	a:hover {
-		background-color: var(--bg-sidebar-item);
+		background-color: var(--bg-1);
 	}
 
 	.name {
-		@apply absolute left-10 h-full flex items-center transition-all duration-300 ease-in-out;
+		@apply absolute left-10 h-full flex items-center transition-all duration-150 ease-in-out;
 	}
 
 	.icon {
-		@apply absolute h-full flex items-center transition-all duration-500 ease-in-out;
+		@apply absolute h-full flex items-center transition-all duration-150 ease-in-out;
 	}
 
 	.notif {
-		@apply bg-sky-500 text-gray-100 font-bold px-2 py-1 text-xs rounded-full absolute right-0 h-6 my-3 mr-3 transition-all duration-300 ease-in-out;
+		@apply bg-sky-500 text-gray-100 font-bold px-2 py-1 text-xs rounded-full absolute right-0 h-6 my-3 mr-3 transition-all duration-150 ease-in-out;
 	}
 </style>
