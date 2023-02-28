@@ -49,6 +49,7 @@ html,
 body {
 	overflow: hidden;
 	@apply font-light;
+	background-color: var(--bg-1);
 }
 
 .nav {
@@ -65,14 +66,14 @@ body {
 	@apply fixed transition-all duration-150 ease-in-out w-64;
 	left: var(--sidebar-left);
 	background-color: var(--bg-2);
-	height: calc(100vh - 48px);
+	height: calc(100vh - 48px - env(safe-area-inset-bottom));
 }
 
 .content {
-	@apply overflow-scroll py-6 pr-6 transition-all duration-150 ease-in-out;
+	@apply overflow-scroll py-6 pr-6 transition-all duration-150 ease-in-out pb-32;
 	background-color: var(--bg-4);
 	color: var(--text);
-	height: calc(100vh - 48px);
+	height: calc(100vh - 48px - env(safe-area-inset-bottom));
 }
 
 .profile {

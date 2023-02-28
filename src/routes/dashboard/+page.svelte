@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Card from '$components/Card.svelte';
+	import { Card } from '$components';
 
 	//create a dummy card with fake data
 	const cardData = [

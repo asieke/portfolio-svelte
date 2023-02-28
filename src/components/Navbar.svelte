@@ -19,13 +19,13 @@
 </script>
 
 <div class="nav">
-	<div class="hidden sm:block transition-all duration-500 ease-in-out">
+	<div class="hidden sm:block">
 		<div class="flex align-middle items-center p-2">
 			<img src="/logo.png" alt={'logo'} height={32} width={32} />
 			<span class="m-1 font-bold">Portfolio Labs</span>
 		</div>
 	</div>
-	<div class="sm:hidden flex items-center transition-all duration-500 ease-in-out">
+	<div class="sm:hidden flex items-center">
 		<button on:click={() => toggleSidebar()}><Hamburger class="h-6 w-6 ml-3" /></button>
 	</div>
 	<div class="flex flex-row mr-4 space-x-2">

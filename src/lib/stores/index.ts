@@ -1,7 +1,4 @@
 import { writable } from 'svelte/store';
-import theme from './themeStore';
-
-export { theme };
 
 export const sidebarCollapsed = writable(false);
 

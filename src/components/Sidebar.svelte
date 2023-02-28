@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { sidebarCollapsed } from '$lib/stores';
 	import { ChartPie, ArrowLeft, Gauge, Stack, Harvest, Rocket } from '$components/svg';
-	import SidebarLink from '$components/SidebarLink.svelte';
+	import { SidebarLink } from '$components';
 
 	//toggle sidebarCollapsed
 	const toggleCollapsed = () => {

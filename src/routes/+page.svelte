@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Lorem from '$components/Lorem.svelte';
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -8,4 +7,3 @@
 <p>How are you doing</p>
 
 <div>This is a div</div>
-<Lorem />

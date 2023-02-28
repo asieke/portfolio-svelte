@@ -2,10 +2,7 @@
 	import '../app.css';
 	import { onMount } from 'svelte';
 
-	import Sidebar from '$components/Sidebar.svelte';
-	import Navbar from '$components/Navbar.svelte';
-	import Content from '$components/Content.svelte';
-	import UserDropdown from '$components/UserDropdown.svelte';
+	import { Sidebar, Navbar, Content, UserDropdown } from '$components';
 
 	onMount(() => {
 		window.addEventListener('resize', () => {
