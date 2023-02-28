@@ -5,7 +5,6 @@
 
 	//toggle sidebarCollapsed
 	const toggleCollapsed = () => {
-		console.log($sidebarCollapsed);
 		sidebarCollapsed.set(!$sidebarCollapsed);
 	};
 

@@ -1,21 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
 	import { menu } from '$lib/stores';
 	import theme from '$lib/stores/themeStore';
-
+	import { toggleSidebar } from '$lib/shared/globals';
 	import { Hamburger, Sun } from '$components/svg/';
 
-	function toggleSidebar() {
-		document.documentElement.classList.toggle('sidebarShowing');
-		document.documentElement.classList.toggle('sidebarHidden');
-	}
-
-	function toggleTheme() {
+	const toggleTheme = () => {
 		document.documentElement.classList.toggle('light');
 		document.documentElement.classList.toggle('dark');
 		theme.set($theme === 'dark' ? 'light' : 'dark');
-	}
+	};
 </script>
 
 <div class="nav">
@@ -29,7 +23,7 @@
 		<button on:click={() => toggleSidebar()}><Hamburger class="h-6 w-6 ml-3" /></button>
 	</div>
 	<div class="flex flex-row mr-4 space-x-2">
-		<button on:click={() => toggleTheme()}><Sun /></button>
+		<button on:click={toggleTheme}><Sun /></button>
 		<button
 			type="button"
 			class="border-2 border-gray-300 h-7 w-7"

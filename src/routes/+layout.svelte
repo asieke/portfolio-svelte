@@ -3,18 +3,10 @@
 	import { onMount } from 'svelte';
 
 	import { Sidebar, Navbar, Content, UserDropdown } from '$components';
+	import { resizeListener } from '$lib/shared/globals';
 
 	onMount(() => {
-		window.addEventListener('resize', () => {
-			if (window.innerWidth < 640) {
-				document.documentElement.classList.add('sidebarHidden');
-				document.documentElement.classList.remove('sidebarShowing');
-			}
-			if (window.innerWidth >= 640) {
-				document.documentElement.classList.remove('sidebarHidden');
-				document.documentElement.classList.add('sidebarShowing');
-			}
-		});
+		window.addEventListener('resize', resizeListener);
 	});
 </script>
 
@@ -34,7 +26,6 @@
 	<script>
 		if (window) {
 			const localTheme = window.localStorage.getItem('theme') || 'dark';
-			console.log('loading ))))', localTheme);
 			document.documentElement.classList.add(localTheme);
 			//if the screen size is <640 then set the .sidebar "left" to -256px
 			if (window.innerWidth < 640) {

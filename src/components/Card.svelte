@@ -10,9 +10,7 @@
 	<img class="rounded-t-lg" {src} alt="" />
 	<div class="p-5">
 		<a {href}>
-			<h5 class="mb-2 text-2xl font-bold tracking-tight ">
-				{title}
-			</h5>
+			<h5 class="mb-2 text-2xl font-bold tracking-tight ">HEYYYY</h5>
 		</a>
 		<p class="mb-3 font-normal ">
 			{description}

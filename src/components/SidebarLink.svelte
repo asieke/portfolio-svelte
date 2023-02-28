@@ -1,5 +1,12 @@
 <script lang="ts">
+	import { toggleSidebar, mobileWidth } from '$lib/shared/globals';
 	import { sidebarCollapsed } from '$lib/stores';
+
+	const toggleSidebarOnlyOnMobile = () => {
+		if (window.innerWidth <= mobileWidth) {
+			toggleSidebar();
+		}
+	};
 
 	export let href: string;
 	export let name: string;
@@ -7,7 +14,7 @@
 </script>
 
 <li class="relative flex h-12 justify-end">
-	<a {href} class={$sidebarCollapsed ? 'w-16' : 'w-full'}>
+	<a {href} class={$sidebarCollapsed ? 'w-16' : 'w-full'} on:click={toggleSidebarOnlyOnMobile}>
 		<div class="icon {$sidebarCollapsed ? 'left-[196px]' : 'left-2'}">
 			<slot />
 		</div>
