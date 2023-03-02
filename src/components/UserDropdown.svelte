@@ -1,16 +1,20 @@
 <script lang="ts">
 	import { menu } from '$lib/stores';
+
+	const closeMenu = () => {
+		menu.set(false);
+	};
 </script>
 
-<div class="container {$menu ? 'right-0' : '-right-48'}">
+<div id="userMenu" class="container {$menu ? 'right-0' : '-right-48'}">
 	<div class="px-6 py-4">
 		<span class="">Bonnie Green</span>
 		<span class="font-medium truncate">name@flowbite.com</span>
 	</div>
 	<ul class="py-2 space-y-2">
-		<li><a href="settings/">Settings</a></li>
-		<li><a href="profile/">Profile</a></li>
-		<li><a href="logout/">Logout</a></li>
+		<li><a href="/settings" on:click={closeMenu}>Settings</a></li>
+		<li><a href="/profile" on:click={closeMenu}>Profile</a></li>
+		<li><a href="/logout" on:click={closeMenu}>Logout</a></li>
 	</ul>
 </div>
 

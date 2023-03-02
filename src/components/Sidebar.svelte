@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { sidebarCollapsed } from '$lib/stores';
 	import { ChartPie, ArrowLeft, Gauge, Stack, Harvest, Rocket } from '$components/svg';
 	import { SidebarLink } from '$components';
+	import { mobileWidth, setDocumentClass } from '$lib/shared/globals';
+	import { sidebarCollapsed, sidebarShowing, mobile } from '$lib/stores';
 
 	//toggle sidebarCollapsed
 	const toggleCollapsed = () => {
 		sidebarCollapsed.set(!$sidebarCollapsed);
+		setDocumentClass($sidebarShowing, $sidebarCollapsed, $mobile);
 	};
-
-	//{!$sidebarCollapsed ? '' : '-ml-[176px]'}
 </script>
 
-<div class="sidebar {!$sidebarCollapsed ? '' : '-ml-[176px]'}">
+<div id="sidebar" class="sidebar">
 	<div class="px-2 pt-4 pb-8">
 		<ul class="space-y-2">
 			<SidebarLink href="/dashboard" name="Dashboard" notifications={17}><Gauge /></SidebarLink>
@@ -26,9 +26,9 @@
 		</ul>
 	</div>
 	<div class="profile">
-		<button on:click={toggleCollapsed}
-			><ArrowLeft class="{$sidebarCollapsed ? 'rotate-180' : ''} h-4 w-4" /></button
-		>
+		<button class="arrow" on:click={toggleCollapsed}>
+			<ArrowLeft class="w-4 h-4" />
+		</button>
 	</div>
 </div>
 
@@ -37,5 +37,9 @@
 		@apply outline-none p-1 right-4 bottom-4 absolute;
 		background-color: var(--bg-3);
 		color: var(--text);
+	}
+	.arrow {
+		@apply w-6 h-6;
+		transform: rotate(var(--rotate));
 	}
 </style>

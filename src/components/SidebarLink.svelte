@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { toggleSidebar, mobileWidth } from '$lib/shared/globals';
-	import { sidebarCollapsed } from '$lib/stores';
+	import { setDocumentClass } from '$lib/shared/globals';
+	import { sidebarCollapsed, sidebarShowing, mobile } from '$lib/stores';
 
 	const toggleSidebarOnlyOnMobile = () => {
-		if (window.innerWidth <= mobileWidth) {
-			toggleSidebar();
+		if ($mobile) {
+			sidebarShowing.set(false);
+			setDocumentClass($sidebarShowing, $sidebarCollapsed, $mobile);
 		}
 	};
 
@@ -14,20 +15,21 @@
 </script>
 
 <li class="relative flex h-12 justify-end">
-	<a {href} class={$sidebarCollapsed ? 'w-16' : 'w-full'} on:click={toggleSidebarOnlyOnMobile}>
-		<div class="icon {$sidebarCollapsed ? 'left-[196px]' : 'left-2'}">
+	<a {href} on:click={toggleSidebarOnlyOnMobile} data-sveltekit-preload-code>
+		<div class="icon">
 			<slot />
 		</div>
-		<div class="name {$sidebarCollapsed ? 'opacity-0' : 'opacity-100'}">
+		<div class="name">
 			{name}
 		</div>
-		<div class="notif {$sidebarCollapsed ? 'opacity-0' : 'opacity-100'}">{notifications}</div>
+		<div class="notif">{notifications}</div>
 	</a>
 </li>
 
 <style>
 	a {
 		@apply flex rounded cursor-pointer font-normal;
+		width: var(--link-width);
 		color: var(--text);
 	}
 	a:hover {
@@ -36,13 +38,16 @@
 
 	.name {
 		@apply absolute left-10 h-full flex items-center transition-all duration-150 ease-in-out;
+		opacity: var(--item-opacity);
 	}
 
 	.icon {
 		@apply absolute h-full flex items-center transition-all duration-150 ease-in-out;
+		left: var(--icon-left);
 	}
 
 	.notif {
 		@apply bg-sky-500 text-gray-100 font-bold px-2 py-1 text-xs rounded-full absolute right-0 h-6 my-3 mr-3 transition-all duration-150 ease-in-out;
+		opacity: var(--item-opacity);
 	}
 </style>

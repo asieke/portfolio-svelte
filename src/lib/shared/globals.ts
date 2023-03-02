@@ -1,19 +1,25 @@
 export const mobileWidth = 640;
 
-export const resizeListener = () => {
-	if (window.innerWidth < mobileWidth) {
+export const setDocumentClass = (showing: boolean, collapsed: boolean, mobile: boolean) => {
+	if (mobile) {
+		document.documentElement.classList.add('mobile');
+	} else {
+		document.documentElement.classList.remove('mobile');
+	}
+
+	if (!showing) {
 		document.documentElement.classList.add('sidebarHidden');
 		document.documentElement.classList.remove('sidebarShowing');
+		document.documentElement.classList.remove('sidebarCollapsed');
 	}
-	if (window.innerWidth >= mobileWidth) {
+	if (showing && collapsed) {
+		document.documentElement.classList.add('sidebarCollapsed');
+		document.documentElement.classList.remove('sidebarShowing');
 		document.documentElement.classList.remove('sidebarHidden');
-		document.documentElement.classList.add('sidebarShowing');
 	}
-};
-
-export const toggleSidebar = () => {
-	console.log('TOGGLING');
-	document.documentElement.classList.toggle('sidebarShowing');
-	document.documentElement.classList.toggle('sidebarHidden');
-	return true;
+	if (showing && !collapsed) {
+		document.documentElement.classList.add('sidebarShowing');
+		document.documentElement.classList.remove('sidebarCollapsed');
+		document.documentElement.classList.remove('sidebarHidden');
+	}
 };
