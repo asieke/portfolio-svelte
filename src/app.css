@@ -2,37 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html.sidebarShowing {
-	--sidebar-left: 0px;
-	--content-left: 256px;
-	--link-width: 100%;
-	--item-opacity: 1;
-	--icon-left: 10px;
-	--hamburger-left: 16px;
-}
-
-html.sidebarHidden {
-	--sidebar-left: -256px;
-	--content-left: 0px;
-	--icon-left: 0px;
-	--hamburger-left: 16px;
-}
-
-html.sidebarCollapsed {
-	--sidebar-left: -198px;
-	--content-left: 60px;
-	--link-width: 40px;
-	--item-opacity: 0;
-	--icon-left: 208px;
-	--rotate: 180deg;
-	--hamburger-left: 16px;
-}
-
-html.mobile {
-	--content-left: 0px;
-	--sidebar-z: 20;
-}
-
 html.dark {
 	--bg-nav: #0f172a;
 	--bg-1: #0f172a;
@@ -68,61 +37,12 @@ html.light {
 	--info: #4299e1;
 }
 
-/* if html has classes sidebarShowing & mobile then set screen to block else set screen to hidden */
-html.sidebarShowing.mobile .screen,
-html.sidebarCollapsed.mobile .screen {
-	z-index: 10;
-	opacity: 0.5;
+html {
+	--navbar-height: 64px;
 }
 
 html,
 body {
-	overflow: hidden;
 	@apply font-light;
 	background-color: var(--bg-4);
-}
-
-body > .sidebar,
-body > .content {
-	height: 100%;
-}
-
-.nav {
-	@apply w-full h-12 flex justify-between;
-	background-color: var(--bg-nav);
-	color: var(--text-nav);
-}
-
-.sidebar {
-	@apply fixed transition-all duration-150 ease-in-out w-64;
-	z-index: var(--sidebar-z);
-	left: var(--sidebar-left);
-	background-color: var(--bg-2);
-	height: calc(100% - 48px);
-}
-
-.content {
-	@apply fixed overflow-scroll py-6 transition-all duration-150 ease-in-out;
-	/* background-color: var(--bg-4); */
-	color: var(--text);
-	height: calc(100% - 48px);
-	left: var(--content-left);
-	width: 100%;
-	padding-right: calc(var(--content-left) + 24px);
-	padding-left: 24px;
-	z-index: 10;
-}
-
-.screen {
-	@apply w-full h-full fixed -z-10 bg-black;
-	opacity: 0;
-}
-
-.profile {
-	@apply bottom-0 w-full h-14 absolute;
-	background-color: var(--bg-1);
-}
-
-button {
-	@apply p-3 hover:opacity-80 rounded;
 }

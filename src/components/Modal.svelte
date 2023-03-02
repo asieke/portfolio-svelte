@@ -23,8 +23,8 @@
 	});
 </script>
 
-<div class="modalScreen" transition:fade={{ duration: 200 }} />
-<div id="modal" transition:fade={{ duration: 500, delay: 200 }}>
+<div class="modalScreen" in:fade={{ duration: 200 }} />
+<div id="modal" in:fade={{ duration: 200, delay: 50 }}>
 	<button class="close" on:click={close}>x</button>
 	<slot />
 </div>

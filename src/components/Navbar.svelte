@@ -1,97 +1,77 @@
 <script lang="ts">
 	import theme from '$lib/stores/themeStore';
 	import { Hamburger, Sun } from '$components/svg/';
-	import { mobileWidth, setDocumentClass } from '$lib/shared/globals';
-	import { sidebarCollapsed, sidebarShowing, mobile, menu } from '$lib/stores';
+	import { menu, sidebar } from '$lib/stores';
+	import { Menu, Sidebar } from '$components';
 
 	const toggleTheme = () => {
 		document.documentElement.classList.toggle('light');
 		document.documentElement.classList.toggle('dark');
 		theme.set($theme === 'dark' ? 'light' : 'dark');
 	};
-
-	//toggle sidebarCollapsed
-	// const toggleSidebar = () => {
-	// 	sidebarShowing.set(!$sidebarShowing);
-	// 	setDocumentClass($sidebarShowing, $sidebarCollapsed, $mobile);
-	// };
-
-	const toggleSidebar = () => {
-		const sidebarListener = (event: Event) => {
-			// Use type assertion to tell TypeScript that event.target is an Element
-			const target = event.target as Element;
-
-			console.log('sidebar Listener... click', target);
-
-			// Use the closest method on the Element to find the closest matching ancestor
-			if (!target.closest('#sidebar')) {
-				console.log('you did not click on the sidebar');
-				sidebarShowing.set(false);
-				setDocumentClass($sidebarShowing, $sidebarCollapsed, $mobile);
-				document.removeEventListener('click', sidebarListener);
-			}
-		};
-
-		if (!$sidebarShowing) {
-			document.addEventListener('click', sidebarListener);
-			sidebarShowing.set(true);
-		} else {
-			document.removeEventListener('click', sidebarListener);
-			sidebarShowing.set(false);
-		}
-		setDocumentClass($sidebarShowing, $sidebarCollapsed, $mobile);
-	};
-
-	const toggleMenu = () => {
-		if (!$menu) {
-			document.addEventListener('click', (event: Event) => {
-				// Use type assertion to tell TypeScript that event.target is an Element
-				const target = event.target as Element;
-
-				// Use the closest method on the Element to find the closest matching ancestor
-				if (!target.closest('#userMenu')) {
-					menu.set(false);
-				}
-			});
-			menu.set(true);
-		} else {
-			menu.set(false);
-		}
-	};
 </script>
 
 <div class="nav">
-	<div class="logo">
-		<div class="flex align-middle items-center p-2">
-			<img src="/logo.png" alt={'logo'} height={32} width={32} />
-			<span class="m-1 font-bold">Portfolio Labs</span>
-		</div>
+	<a class="logo" href="/">
+		<img src="/logo.png" alt={'logo'} height={32} width={32} />
+		<span class="m-1 font-bold">Portfolio Labs</span>
+	</a>
+	<div class="links sm:flex hidden">
+		<ul>
+			<li><a href="/dashboard">Dashboard</a></li>
+			<li><a href="/allocation">Allocation</a></li>
+			<li><a href="/recommendations">Recommendations</a></li>
+		</ul>
 	</div>
-	<div class="hamburger">
-		<button on:click|stopPropagation={toggleSidebar}><Hamburger class="h-6 w-6" /></button>
-	</div>
-	<div class="flex flex-row mr-4 space-x-2">
-		<button on:click={toggleTheme}><Sun /></button>
-		<button
-			type="button"
-			class="border-2 border-gray-300 h-7 w-7"
-			on:click|stopPropagation={toggleMenu}
+	<div class="profile">
+		<button class="" on:click={toggleTheme}><Sun /></button>
+		<button class="block sm:hidden" on:click|stopPropagation={() => sidebar.set(!$sidebar)}
+			><Hamburger class="h-6 w-6" /></button
 		>
+		<button class="hidden sm:block picture" on:click|stopPropagation={() => menu.set(!$menu)}>
 			<img class="rounded-full" height={32} width={32} src="/profile.png" alt="user" />
 		</button>
 	</div>
 </div>
+<Menu />
+<Sidebar />
 
 <style lang="postcss">
+	.nav {
+		@apply fixed w-full flex justify-between top-0 left-0 z-50 items-center text-sm;
+		height: var(--navbar-height);
+		background-color: var(--bg-nav);
+		color: var(--text-nav);
+	}
+
+	.logo {
+		@apply flex pl-4;
+	}
+
+	.links {
+		@apply font-semibold;
+	}
+
+	.links ul {
+		@apply flex flex-row justify-between space-x-3;
+	}
+
+	.picture {
+		@apply border-2 border-gray-300 h-7 w-7;
+	}
+
+	a:hover,
+	button:hover {
+		color: var(--info);
+		border-color: var(--info);
+	}
+
+	.profile {
+		@apply flex space-x-2 pr-4;
+	}
+
 	button {
 		@apply outline-none p-0 rounded-full;
 		margin: 10px 0px;
-	}
-	.logo {
-		@apply hidden sm:block transition-all duration-150 ease-in-out;
-	}
-	.hamburger {
-		@apply sm:hidden flex items-center transition-all duration-150 ease-in-out;
-		margin-left: var(--hamburger-left);
 	}
 </style>
