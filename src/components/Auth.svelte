@@ -12,7 +12,9 @@
 		const { data, error } = await supabase.auth.signInWithOtp({
 			email,
 			options: {
-				emailRedirectTo: 'http://localhost:5173/dashboard'
+				// set emailRedirectTo environment variable for app URL
+
+				emailRedirectTo: `${window.location.origin}/dashboard`
 			}
 		});
 		loading = false;
