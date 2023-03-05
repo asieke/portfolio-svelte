@@ -8,13 +8,14 @@
 	let errorMessage: null | string = null;
 
 	const handleLogin = async () => {
+		console.log(`${window.location.origin}/dashboard`);
 		loading = true;
 		const { data, error } = await supabase.auth.signInWithOtp({
 			email,
 			options: {
 				// set emailRedirectTo environment variable for app URL
 
-				emailRedirectTo: `${window.location.origin}/dashboard`
+				emailRedirectTo: `http://localhost:5173/dashboard`
 			}
 		});
 		loading = false;
