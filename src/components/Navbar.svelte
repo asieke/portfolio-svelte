@@ -2,7 +2,7 @@
 	import theme from '$lib/stores/themeStore';
 	import { Hamburger, Sun } from '$components/svg/';
 	import { menu, sidebar } from '$lib/stores';
-	import { Menu, Sidebar } from '$components';
+	import { Menu, Sidebar, LinksMain } from '$components';
 
 	const toggleTheme = () => {
 		document.documentElement.classList.toggle('light');
@@ -17,11 +17,7 @@
 		<span class="m-1 font-bold">Portfolio Labs</span>
 	</a>
 	<div class="links sm:flex hidden">
-		<ul>
-			<li><a href="/dashboard">Dashboard</a></li>
-			<li><a href="/allocation">Allocation</a></li>
-			<li><a href="/recommendations">Recommendations</a></li>
-		</ul>
+		<LinksMain />
 	</div>
 	<div class="profile">
 		<button class="" on:click={toggleTheme}><Sun /></button>
@@ -46,14 +42,6 @@
 
 	.logo {
 		@apply flex pl-4;
-	}
-
-	.links {
-		@apply font-semibold;
-	}
-
-	.links ul {
-		@apply flex flex-row justify-between space-x-3;
 	}
 
 	.picture {

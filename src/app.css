@@ -17,6 +17,7 @@ html.dark {
 	--success: #48bb78;
 	--warning: #ed8936;
 	--info: #4299e1;
+	--brand: #6d28d9;
 }
 
 html.light {
@@ -35,6 +36,7 @@ html.light {
 	--success: #48bb78;
 	--warning: #ed8936;
 	--info: #4299e1;
+	--brand: #6d28d9;
 }
 
 html {
@@ -45,4 +47,25 @@ html,
 body {
 	@apply font-light;
 	background-color: var(--bg-4);
+}
+
+.sidebar li {
+	@apply py-1 px-3;
+}
+
+.sidebar li > a,
+.settings-sidebar li > a {
+	@apply w-full text-sm  flex flex-row p-3 space-x-2 rounded;
+}
+.sidebar li > a:hover,
+.settings-sidebar li > a:hover {
+	background-color: var(--bg-1);
+}
+
+.links {
+	@apply font-semibold;
+}
+
+.links ul {
+	@apply flex flex-row justify-between space-x-3;
 }

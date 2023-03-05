@@ -3,46 +3,40 @@
 	import { fade } from 'svelte/transition';
 
 	export let close: () => void;
+	export let width = 50;
+	export let height = 50;
+	export let dismissable = true;
 
-	// onmount add a handler that closes the component whenever the user clicks outside
-	onMount(() => {
-		const handleClick = (event: Event) => {
-			console.log('handling the click');
-			const target = event.target as HTMLElement;
-			//if the click is not in id=modal then call close
-			if (!target.closest('#modal')) {
-				close();
-			}
-		};
+	const dismiss = () => {
+		if (dismissable) {
+			close();
+		}
+	};
 
-		document.addEventListener('click', handleClick);
-
-		return () => {
-			document.removeEventListener('click', handleClick);
-		};
-	});
+	let style = `width: ${width}%; height: ${height}%; top: ${(100 - height) / 4}%;`;
 </script>
 
-<div class="modalScreen" in:fade={{ duration: 200 }} />
-<div id="modal" in:fade={{ duration: 200, delay: 50 }}>
-	<button class="close" on:click={close}>x</button>
+<button class="modalScreen" on:click={dismiss} in:fade={{ duration: 200 }} />
+<div id="modal" {style} in:fade={{ duration: 200, delay: 50 }}>
+	<button class="close" on:click={dismiss}>x</button>
 	<slot />
 </div>
 
-<style>
+<style lang="postcss">
 	#modal {
-		@apply fixed w-3/4 h-1/2 rounded p-6 shadow-xl z-50 transition-all duration-150 ease-in-out;
+		@apply fixed rounded p-6 shadow-xl z-50 transition-all duration-150 ease-in-out;
 		background-color: var(--bg-3);
-		top: 40%;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, 0%);
 	}
 
 	.modalScreen {
-		@apply fixed top-0 left-0 w-full h-full bg-black z-50 opacity-80 transition-all duration-150 ease-in-out;
+		@apply fixed top-0 left-0 w-full h-full bg-black z-50 opacity-80 transition-all duration-150 ease-in-out cursor-default;
 	}
 
 	.close {
-		@apply absolute top-0 right-0 m-6 p-2 bg-blue-600 w-8 h-8 flex items-center justify-center font-bold;
+		@apply absolute top-0 right-0 m-6 p-2 w-8 h-8 flex items-center justify-center font-bold opacity-80 hover:opacity-100 rounded-md;
+		background-color: var(--bg-1);
+		color: var(--text);
 	}
 </style>

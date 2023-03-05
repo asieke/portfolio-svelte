@@ -8,7 +8,6 @@
 	};
 
 	const open = () => {
-		console.log('opening modal');
 		modalShowing = true;
 	};
 </script>
