@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { supabase } from '$lib/supabaseClient';
+	import { handleLogin } from '$lib/supabaseClient';
 	import { Email } from '$components/svg';
 
 	let loading = false;
@@ -7,24 +7,18 @@
 	let email: string;
 	let errorMessage: null | string = null;
 
-	const handleLogin = async () => {
-		const redir = `${window.location.origin}/dashboard`;
+	const onSubmit = async () => {
 		loading = true;
-		const { data, error } = await supabase.auth.signInWithOtp({
-			email,
-			options: {
-				// set emailRedirectTo environment variable for app URL
-				emailRedirectTo: redir
-			}
-		});
-		loading = false;
+		await handleLogin(email);
+
 		submitted = true;
+		loading = false;
 	};
 </script>
 
 <div class="form">
 	{#if !submitted}
-		<form class="row flex-center flex" on:submit|preventDefault={handleLogin}>
+		<form class="row flex-center flex" on:submit|preventDefault={onSubmit}>
 			<div class="space-y-4 w-full">
 				<h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl ">
 					Sign in to your account

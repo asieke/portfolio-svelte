@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import { Navbar, Content, Landing, SetupAccount } from '$components';
 
-	import '../app.css';
+	import '$styles/app.css';
 
 	onMount(() => {
 		const {
