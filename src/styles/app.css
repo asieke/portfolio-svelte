@@ -69,3 +69,11 @@ body {
 .links ul {
 	@apply flex flex-row justify-between space-x-3;
 }
+
+h2 {
+	font-weight: bold;
+	font-size: 1.5rem;
+	line-height: 1.25;
+	letter-spacing: -0.025em;
+	color: #1a202c;
+}

@@ -1,8 +1,8 @@
 <script>
-	import { Banner, Header, Hero } from './components';
+	import { Hero, Blog, Pricing, Content } from '../components';
 </script>
 
-<Banner />
-<Header />
 <Hero />
-<h1>Hello</h1>
+<Content />
+<Pricing />
+<Blog />

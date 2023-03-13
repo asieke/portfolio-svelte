@@ -1,5 +1,5 @@
 <div
-	class="relative flex justify-center px-3 sm:px-5 py-3.5 text-sm text-center bg-slate-900 overflow-hidden"
+	class="relative z-20 flex justify-center px-3 sm:px-5 py-3.5 text-sm text-center bg-slate-900 overflow-hidden"
 >
 	<svg class="absolute top-0" aria-hidden="true" width="1148" height="248"
 		><defs

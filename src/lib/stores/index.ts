@@ -23,10 +23,8 @@ const sidebarOutsideClick = generateClickHandler('sidebar', () => sidebar.set(fa
 menu.subscribe((value) => {
 	if (browser) {
 		if (value === true) {
-			console.log('the menu is open');
 			document.addEventListener('click', menuOutsideClick);
 		} else {
-			console.log('the menu is closed');
 			document.removeEventListener('click', menuOutsideClick);
 		}
 	}
@@ -35,10 +33,8 @@ menu.subscribe((value) => {
 sidebar.subscribe((value) => {
 	if (browser) {
 		if (value === true) {
-			console.log('the menu is open');
 			document.addEventListener('click', sidebarOutsideClick);
 		} else {
-			console.log('the menu is closed');
 			document.removeEventListener('click', sidebarOutsideClick);
 		}
 	}
