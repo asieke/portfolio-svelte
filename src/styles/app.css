@@ -18,17 +18,18 @@ html.dark {
 	--warning: #ed8936;
 	--info: #4299e1;
 	--brand: #6d28d9;
+	--selected: #c29ffc;
 }
 
 html.light {
-	--bg-nav: #0f172a;
+	--bg-nav: #fff;
 	--bg-1: #cbd5e1;
 	--bg-2: #e2e8f0;
 	--bg-3: #f1f5f9;
 	--bg-4: #f8fafc;
 	--bg-5: #fff;
 
-	--text-nav: #e2e8f0;
+	--text-nav: #334155;
 
 	--text: #334155;
 	--text-inv: #e2e8f0;
@@ -37,6 +38,7 @@ html.light {
 	--warning: #ed8936;
 	--info: #4299e1;
 	--brand: #6d28d9;
+	--selected: #c29ffc;
 }
 
 html {
@@ -46,20 +48,17 @@ html {
 html,
 body {
 	@apply font-light;
-	background-color: var(--bg-4);
-}
-
-.sidebar li {
-	@apply py-1 px-3;
 }
 
 .sidebar li > a,
 .settings-sidebar li > a {
-	@apply w-full text-sm  flex flex-row p-3 space-x-2 rounded;
+	@apply w-full text-xs flex flex-row p-3 mb-2 space-x-2 rounded;
 }
 .sidebar li > a:hover,
-.settings-sidebar li > a:hover {
-	background-color: var(--bg-1);
+.sidebar li > a.selected,
+.settings-sidebar li > a:hover,
+.settings-sidebar li > a.selected {
+	background-color: var(--selected);
 }
 
 .links {
@@ -76,4 +75,9 @@ h2 {
 	line-height: 1.25;
 	letter-spacing: -0.025em;
 	color: #1a202c;
+}
+
+.main {
+	height: calc(100vh - var(--navbar-height));
+	background-color: var(--bg-4);
 }

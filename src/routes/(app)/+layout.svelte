@@ -20,7 +20,7 @@
 	});
 </script>
 
-<container>
+<div class="main">
 	{#if !$page.data.session || !$page.data.user}
 		<Landing />
 	{:else if !$page.data.user.accepted_tos}
@@ -31,7 +31,7 @@
 			<slot />
 		</Content>
 	{/if}
-</container>
+</div>
 
 <svelte:head>
 	<script>

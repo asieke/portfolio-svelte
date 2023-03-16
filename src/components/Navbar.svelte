@@ -38,6 +38,7 @@
 		height: var(--navbar-height);
 		background-color: var(--bg-nav);
 		color: var(--text-nav);
+		border-bottom: 1px solid #ccc;
 	}
 
 	.logo {
